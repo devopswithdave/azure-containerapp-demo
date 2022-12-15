@@ -30,14 +30,14 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'fmt'
-        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
          
     - name: 'Terraform Init ACA'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
         args: '-var="GITHUB_SHA=${{ github.sha }}"'
 
     - name: 'Terraform Plan ACA'
@@ -45,7 +45,7 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
         args: '-var="GITHUB_SHA=${{ github.sha }}"'
  
     - name: 'Terraform Apply ACA'
@@ -54,5 +54,5 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
         args: '-var="GITHUB_SHA=${{ github.sha }}"'
