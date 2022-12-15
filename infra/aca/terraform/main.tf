@@ -77,7 +77,7 @@ resource "azapi_resource" "containerappmi" {
         containers = [
           {
             image = "${data.azurerm_container_registry.acr.login_server}/aspcoresample:${var.GITHUB_SHA}",
-            name  = "firstcontainerappacracr"
+            name  = "democontainerappacracr"
             resources = {
               cpu    = 0.25
               memory = "0.5Gi"
