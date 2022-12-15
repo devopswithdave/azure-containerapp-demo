@@ -30,14 +30,14 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'fmt'
-        tf_actions_working_dir: "./infra/terraform"
+        tf_actions_working_dir: "./infra/base/terraform"
          
     - name: 'Terraform Init Base'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./infra/terraform"
+        tf_actions_working_dir: "./infra/base/terraform"
  
     
     - name: 'Terraform Destroy Base'
@@ -46,4 +46,4 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'destroy'
-        tf_actions_working_dir: "./infra/terraform"
+        tf_actions_working_dir: "./infra/base/terraform"
