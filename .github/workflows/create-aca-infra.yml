@@ -1,4 +1,4 @@
-name: Create Base Infrastructure
+name: Create ACA Infrastructure
 
 on:
   workflow_dispatch:
@@ -25,31 +25,34 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
  
-    - name: 'Terraform Format Base'
+    - name: 'Terraform Format ACA'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'fmt'
-        tf_actions_working_dir: "./infra/base/terraform"
+        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
          
-    - name: 'Terraform Init Base'
+    - name: 'Terraform Init ACA'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./infra/base/terraform"
- 
-    - name: 'Terraform Plan Base'
+        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        args: '-var="GITHUB_SHA=${{ github.sha }}"'
+
+    - name: 'Terraform Plan ACA'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: "./infra/base/terraform"
+        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        args: '-var="GITHUB_SHA=${{ github.sha }}"'
  
-    - name: 'Terraform Apply Base'
+    - name: 'Terraform Apply ACA'
       if: github.ref == 'refs/heads/main'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./infra/base/terraform"  
+        tf_actions_working_dir: "./5-deploy-containerapp-terraform/terraform"
+        args: '-var="GITHUB_SHA=${{ github.sha }}"'

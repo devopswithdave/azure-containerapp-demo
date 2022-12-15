@@ -1,4 +1,4 @@
-name: Create Base Infrastructure
+name: Destroy ACA Infrastructure
 
 on:
   workflow_dispatch:
@@ -30,26 +30,20 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'fmt'
-        tf_actions_working_dir: "./infra/base/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
          
     - name: 'Terraform Init Base'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./infra/base/terraform"
+        tf_actions_working_dir: "./infra/aca/terraform"
  
-    - name: 'Terraform Plan Base'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_VERSION }}
-        tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: "./infra/base/terraform"
- 
-    - name: 'Terraform Apply Base'
+    
+    - name: 'Terraform Destroy Base'
       if: github.ref == 'refs/heads/main'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
-        tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./infra/base/terraform"  
+        tf_actions_subcommand: 'destroy'
+        tf_actions_working_dir: "./infra/aca/terraform"
