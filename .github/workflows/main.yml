@@ -1,8 +1,13 @@
-name: Create Base Infrastructure
+name: Full Deploy Pipeline
 
 on:
   workflow_dispatch:
-
+  push:
+    branches:
+      - main
+    paths:
+     - "aspnet-core-dotnet-core/*"
+     - ".github/workflows/main.yml"
 jobs:
   terraform:
     name: 'Terraform'
