@@ -47,3 +47,4 @@ jobs:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'destroy'
         tf_actions_working_dir: "./infra/aca/terraform"
+        args: '-var="GITHUB_SHA=${{ github.sha }}"'
