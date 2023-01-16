@@ -16,7 +16,7 @@ variable "environment" {
   default     = "production"
 }
 
-variable "GITHUB_SHA" {
-  type        = string
-  description = "The commit SHA that triggered the workflow"
-}
+# variable "GITHUB_SHA" {
+#   type        = string
+#   description = "The commit SHA that triggered the workflow"
+# }
