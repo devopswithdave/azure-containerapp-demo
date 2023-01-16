@@ -22,3 +22,4 @@ resource "azurerm_log_analytics_solution" "Log_Analytics_Solution_ContainerInsig
     product   = "OMSGallery/ContainerInsights"
   }
 }
+
