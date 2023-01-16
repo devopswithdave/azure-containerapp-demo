@@ -35,8 +35,8 @@ resource "azapi_resource" "containerapp_environment" {
       appLogsConfiguration = {
         destination = "log-analytics"
         logAnalyticsConfiguration = {
-          customerId = azurerm_log_analytics_workspace.la.workspace_id
-          sharedKey  = azurerm_log_analytics_workspace.la.primary_shared_key
+          customerId = azurerm_log_analytics_workspace.Log_Analytics_WorkSpace.workspace_id
+          sharedKey  = azurerm_log_analytics_workspace.Log_Analytics_WorkSpace.primary_shared_key
         }
       }
     }
