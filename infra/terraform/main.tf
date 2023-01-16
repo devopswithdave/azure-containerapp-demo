@@ -35,8 +35,8 @@ resource "azapi_resource" "containerapp_environment" {
       appLogsConfiguration = {
         destination = "log-analytics"
         logAnalyticsConfiguration = {
-          customerId = module.loganalytics.workspace_id
-          sharedKey  = module.loganalytics.primary_shared_key
+          customerId = loganalytics.workspace_id
+          sharedKey  = loganalytics.primary_shared_key
         }
       }
     }
