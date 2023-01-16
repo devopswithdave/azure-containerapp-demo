@@ -44,7 +44,7 @@ resource "azapi_resource" "containerapp_environment" {
 
   depends_on = [
     azurerm_log_analytics_workspace.Log_Analytics_WorkSpace
- ]
+  ]
 }
 
 resource "azurerm_user_assigned_identity" "containerapp" {
