@@ -86,8 +86,8 @@ resource "azapi_resource" "containerappmi" {
       template = {
         containers = [
           {
-            image = "docker.io/springcommunity/spring-framework-petclinic:latest",
-            name  = "democontainerappacracr"
+            image = "springcommunity/spring-framework-petclinic:latest",
+            name  = "spring-framework-petclinic"
             resources = {
               cpu    = 0.25
               memory = "0.5Gi"
