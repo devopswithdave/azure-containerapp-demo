@@ -12,9 +12,13 @@ jobs:
   terraform:
     name: 'Deploy'
     runs-on: ubuntu-latest
+    env:
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_AD_CLIENT_ID}}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
     environment: production
- 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
@@ -24,12 +28,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Log in to Azure
+    - name: Login via Azure CLI
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: '{"clientId": "${{ env.ARM_CLIENT_ID }}", "clientSecret": "${{ env.ARM_CLIENT_SECRET }}", "subscriptionId": "${{ env.ARM_SUBSCRIPTION_ID }}", "tenantId": "${{ env.ARM_TENANT_ID }}"}'
+
 
     - name: Build and deploy Container App
       uses: azure/container-apps-deploy-action@v0
       with:
+        containerAppName: democontainerappcontainermi
+        resourceGroup: democontainerapp-rg
+        containerAppEnvironment: democontainerappacaenv
         imageToDeploy: springcommunity/spring-framework-petclinic:latest
